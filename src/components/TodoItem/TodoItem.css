@@ -1,0 +1,19 @@
+.Completed {
+    text-decoration-line: line-through;
+}
+
+.TodoItemText {
+    max-height: 100px;
+    max-width: 75%;
+    overflow: hidden;
+}
+
+.TodoItemText span {
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.TodoItemText span::-webkit-scrollbar {
+    display: none;
+}
