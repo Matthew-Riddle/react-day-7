@@ -17,31 +17,12 @@ const reorder = (list, startIndex, endIndex) => {
 }
 
 class TodoCard extends Component {
-  state = {
-    value: ''
-  }
-
-  inputChangeHandler = e => {
-    this.setState({
-      value: e.target.value
-    })
-  }
-
-  keyPressed = e => {
-    if (e.key === 'Enter') {
-      this.addTodo(this.state.value)
-    }
-  }
-
   addTodo = content => {
     const todos = [
       ...this.props.todos,
       { id: this.props.todos.length, content, completed: false }
     ]
     axios.put('/todos.json', todos).then(() => {
-      this.setState(prevState => ({
-        value: ''
-      }))
       this.props.createTodo(todos)
     })
   }
@@ -85,11 +66,7 @@ class TodoCard extends Component {
   render () {
     return (
       <Card className={classes.TodoCard}>
-        <TodoInput
-          value={this.state.value}
-          changed={this.inputChangeHandler}
-          keyPressed={this.keyPressed}
-        />
+        <TodoInput addTodo={this.addTodo} />
         <TodoList
           todos={this.props.todos}
           toggleTodo={this.toggleTodo}
